@@ -1,0 +1,16 @@
+name: Mondrian FM JNI build exclusion
+on:
+  push:
+    branches:
+      - guard/a17-mondrian-fm-jni-excluded-20261107
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run host-only source regression checks
+        run: python3 tests/check_mondrian_fm_exclusion.py
