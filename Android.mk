@@ -1,3 +1,7 @@
+# PE-Reborn mondrian does not support FM broadcasting. Keep this legacy
+# source available to other devices, but fail closed for mondrian even when
+# an inherited board configuration accidentally enables BOARD_HAVE_QCOM_FM.
+ifneq ($(TARGET_DEVICE),mondrian)
 ifeq ($(BOARD_HAVE_QCOM_FM),true)
 LOCAL_PATH := $(call my-dir)
 
@@ -29,3 +33,4 @@ endif
 LOCAL_MODULE := libfmjni
 include $(BUILD_SHARED_LIBRARY)
 endif # BOARD_HAVE_QCOM_FM
+endif # TARGET_DEVICE != mondrian
